@@ -1,11 +1,6 @@
-"""Explore learning curves for classification of handwritten digits"""
-
-import matplotlib.pyplot as plt
-import numpy
 from sklearn.datasets import *
-from sklearn.model_selection import train_test_split
+from sklearn.cross_validation import train_test_split
 from sklearn.linear_model import LogisticRegression
-
 
 def display_digits():
     """Read in the 8x8 pictures of numbers and display 10 of them"""
@@ -21,7 +16,7 @@ def display_digits():
 
 def train_model():
     """Train a model on pictures of digits.
-    
+
     Read in 8x8 pictures of numbers and evaluate the accuracy of the model
     when different percentages of the data are used as training data. This function
     plots the average accuracy of the model as a function of the percent of data
@@ -32,14 +27,19 @@ def train_model():
     train_percentages = range(5, 95, 5)
     test_accuracies = numpy.zeros(len(train_percentages))
 
-    # train models with training percentages between 5 and 90 (see
-    # train_percentages) and evaluate the resultant accuracy for each.
-    # You should repeat each training percentage num_trials times to smooth out
-    # variability.
-    # For consistency with the previous example use
-    # model = LogisticRegression(C=10**-10) for your learner
-
-    # TODO: your code here
+    for i in train_percentages:
+    # repeat each value of train_size 10 times to smooth out variability
+        score_test = 0
+        for k in range(num_trials):
+            X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, train_size=i/100)
+            model = LogisticRegression(C=10**-10)
+            model.fit(X_train, y_train)
+            score_test += model.score(X_test, y_test)
+#             print(i, k, model.score(X_test, y_test))
+        accuracy_test = score_test/10
+#         print(accuracy_test)
+        h = int(i/5-1)
+        test_accuracies[h]=accuracy_test
 
     fig = plt.figure()
     plt.plot(train_percentages, test_accuracies)
@@ -50,5 +50,5 @@ def train_model():
 
 if __name__ == "__main__":
     # Feel free to comment/uncomment as needed
-    display_digits()
-    # train_model()
+#     display_digits()
+    train_model()
