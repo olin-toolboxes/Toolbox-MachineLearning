@@ -1,0 +1,33 @@
+1.What is the general trend in the curve?
+
+Looks to be a generally linear positive trend
+
+
+2. Are there parts of the curve that appear to be noisier than others? Why?
+
+The bottom parts of the curve (with small train sets).  This is because the model
+has very little information to pick from when trying to classify the larger test
+sets.  Because of this, there is a certain amount of variable guessing going on.
+This guessing with inherrently vary from model to model, which is why we need to
+run a large number of trials to determine how the model with perform with these
+small training sets.
+
+3. How many trials do you need to get a smooth curve?
+
+Statistically, 30 is seen as a good number.  When I run learning_curve.py with
+num_trials = 30 though, there's still a good amount of noise going on. By
+incrementally increasing num_trials, I've found that a very smooth curve arises
+when looking at num_trials = 100.  Obviously, the more trials, the smoother the
+curve.
+
+
+4. Try different values for C (by changing LogisticRegression(C=10** -10)). What
+happens? If you want to know why this happens, see this Wikipedia page as well as
+the documentation for LogisticRegression in scikit-learn.
+
+Increasing C makes the test results much higher, but takes a longer time to run.
+From sci-kit documentation, C seems to be the inverse of regularization strength.
+The smaller C is, the stronger the regularization.  A strong regularization prevents
+the model from overfitting from small training sets.  Too strong of a regularization
+means underfitting the model, which is characterized by a low score on both the
+training and testing sets.
