@@ -28,7 +28,7 @@ def train_model():
     used to train it.
     """
     data = load_digits()
-    num_trials = 10
+    num_trials = 100
     train_percentages = range(5, 95, 5)
     test_accuracies = numpy.zeros(len(train_percentages))
 
@@ -42,7 +42,7 @@ def train_model():
         trial_accuracies = []
         for i in range(num_trials):
             X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, train_size=train_size/100)
-            model = LogisticRegression(C=10**-10)
+            model = LogisticRegression(C=10**-1)
             model.fit(X_train, y_train)
             trial_accuracies.append(model.score(X_test, y_test))
         average = sum(trial_accuracies)/num_trials
