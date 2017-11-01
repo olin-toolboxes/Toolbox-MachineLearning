@@ -21,7 +21,7 @@ def display_digits():
 
 def train_model():
     """Train a model on pictures of digits.
-    
+
     Read in 8x8 pictures of numbers and evaluate the accuracy of the model
     when different percentages of the data are used as training data. This function
     plots the average accuracy of the model as a function of the percent of data
@@ -38,8 +38,15 @@ def train_model():
     # variability.
     # For consistency with the previous example use
     # model = LogisticRegression(C=10**-10) for your learner
-
-    # TODO: your code here
+    for idx, train_size in  enumerate(train_percentages):
+        trial_accuracies = []
+        for i in range(num_trials):
+            X_train, X_test, y_train, y_test = train_test_split(data.data, data.target, train_size=train_size/100)
+            model = LogisticRegression(C=10**-10)
+            model.fit(X_train, y_train)
+            trial_accuracies.append(model.score(X_test, y_test))
+        average = sum(trial_accuracies)/num_trials
+        test_accuracies[idx] = average
 
     fig = plt.figure()
     plt.plot(train_percentages, test_accuracies)
@@ -51,4 +58,4 @@ def train_model():
 if __name__ == "__main__":
     # Feel free to comment/uncomment as needed
     display_digits()
-    # train_model()
+    train_model()
