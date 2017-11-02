@@ -1,6 +1,8 @@
+import numpy
 from sklearn.datasets import *
 from sklearn.cross_validation import train_test_split
 from sklearn.linear_model import LogisticRegression
+import matplotlib.pyplot as plt
 
 def display_digits():
     """Read in the 8x8 pictures of numbers and display 10 of them"""
