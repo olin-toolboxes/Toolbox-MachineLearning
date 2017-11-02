@@ -1,0 +1,21 @@
+"""
+Subeen Kim
+
+1. What is the general trend in the curve?
+
+	As the percentage of data used for tarining increases, the accuracy on test set is improved.
+
+2. Are there parts of the curve that appear to be noiser than others? Why?
+
+	The end part of graph (extremley small or large portion for training) is noiser than the middle part (training ~ 0.5).
+	When the tested or trained portin is not enough, there might be some exceptionall cases, which induces some noise of graph.
+
+3. How many trials do you need to get a smooth curve?
+
+	When I tried for 100 times, it was able to get a smooth curve. (image attatched)
+
+4. Try different values for C. What happens?
+
+	As C is larger, the accurancy on test sets is well improved.
+
+"""
