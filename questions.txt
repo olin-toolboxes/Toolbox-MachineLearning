@@ -1,0 +1,33 @@
+1. What is the general trend in the curve?
+
+The curve has a positive linear trend. The more data that is used to train the
+model, the more accurate the model will be on classifying the remaining data!
+
+2. Are there parts of the curve that appear to be noisier than others? Why?
+
+Lower training percentages tend to be noisier. Two small subsets of data are far
+less likely to resemble each other, as opposed to two sets which contain a
+majority of the data. The latter is far more likely to capture the
+same overall patterns, and thus give a more consistent accuracy.
+
+3. How many trials do you need to get a smooth curve?
+
+Between 50 and 100 trials is the lower threshold to produce a smooth line.
+Because of the sampling of percentages (taken at every 5%), slight
+variations in accuracy will nearly always give a choppy appearance.
+
+4. Try different values for C (by changing LogisticRegression(C=10** -10)). What
+happens? If you want to know why this happens, see this Wikipedia page as well
+as the documentation for LogisticRegression in scikit-learn.
+
+Increasing C increases the accuracy of the model while adding to computational
+time. C = 10^-2 achieves 88% accuracy with just 5% of the data and gives a peak
+accuracy over 96%!
+
+Note that a C value over 10^-10 also makes the learning curve begin to appear
+logistic!
+
+C represents the inverse of regularization strength. Smaller values give stronger
+regularization, which is a process of introducing additional information to
+prevent overfitting. It makes sense, then, that a larger C value will require
+less data to give a high accuracy, as it is overfitting on training data.
