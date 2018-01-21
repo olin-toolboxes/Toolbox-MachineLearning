@@ -28,7 +28,7 @@ def train_model():
     of data used to train it.
     """
     data = load_digits()
-    num_trials = 10
+    num_trials = 100
     train_percentages = range(5, 95, 5)
     test_accuracies = numpy.zeros(len(train_percentages))
 
@@ -39,8 +39,16 @@ def train_model():
     # For consistency with the previous example use
     # model = LogisticRegression(C=10**-10) for your learner
 
-    # TODO: your code here
+    for percentage in range(len(train_percentages)):
+        accuracy = []
+        for trial in range(num_trials):
+            x_train, x_test, y_train, y_test = train_test_split(data.data, data.target, train_size=train_percentages[percentage]/100)
+            model = LogisticRegression(C=10**-5)
+            model.fit(x_train, y_train)
+            accuracy.append(model.score(x_test, y_test))
+        test_accuracies[percentage] = numpy.mean(accuracy)
 
+    # plot figure
     fig = plt.figure()
     plt.plot(train_percentages, test_accuracies)
     plt.xlabel("Percentage of Data Used for Training")
@@ -50,5 +58,5 @@ def train_model():
 
 if __name__ == "__main__":
     # Feel free to comment/uncomment as needed
-    display_digits()
-    # train_model()
+    # display_digits()
+    train_model()
