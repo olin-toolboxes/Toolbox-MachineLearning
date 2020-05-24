@@ -1,0 +1,11 @@
+1. What is the general trend in the curve?
+    The general trend in the curve is positive and logarithmic.
+
+2. Are there parts of the curve that appear to be noisier than others? Why?
+    Yes, the beginning of the trend (the low train percentage) is often noisier than others. It is because with limited amount of trials, the machine  do not have enough data to make an accurate prediction compared to more dataset allows more analysis.
+
+3. How many trials do you need to get a smooth curve?
+    It varies. The more trials we have, the smoother the curve is. I started the number of trials with 10, and increase by 10 each time. By 70 numbers of trials, it has a pretty smooth curve. 
+
+4. Try different values for C (by changing LogisticRegression(C=10** -10)). What happens? 
+   When I tried with a different value for C (C=10** -10), the curve becomes more linear rather than logarithmic curve before. 
